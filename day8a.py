@@ -11,5 +11,6 @@ def main():
 
     print(tally)
 
+
 if __name__ == "__main__":
     main()

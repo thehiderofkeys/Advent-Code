@@ -7,11 +7,13 @@ def main():
         input_digits = code.split("|")[0].split()
         decoder = get_encoding(input_digits)
         output_digits = code.split("|")[1].split()
-        output = int(''.join([str(decoder[''.join(sorted(digit))]) for digit in output_digits]))
+        output = int(''.join([str(decoder[''.join(sorted(digit))])
+                     for digit in output_digits]))
         print(output)
         tally += output
 
     print(tally)
+
 
 def get_encoding(input_digits: list[str]) -> dict:
     string_to_num = {}
@@ -60,9 +62,6 @@ def get_encoding(input_digits: list[str]) -> dict:
             continue
     return string_to_num
 
-    
 
-    
-            
 if __name__ == "__main__":
     main()

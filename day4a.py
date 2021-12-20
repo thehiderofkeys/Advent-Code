@@ -13,7 +13,7 @@ def main():
         last_number = draw[min_index]
         print(winner_score)
         print(last_number)
-        
+
 
 def bingo_board(draw):
     board = [0] * len(draw)
@@ -29,7 +29,7 @@ def bingo_board(draw):
                 last_index_rows[row_index] = index
             if last_index_cols[col_index] < index:
                 last_index_cols[col_index] = index
-    win_index = min(min(last_index_rows),min(last_index_cols))
+    win_index = min(min(last_index_rows), min(last_index_cols))
     score = sum(board) - sum(board[:win_index + 1])
     return score, win_index
 

@@ -10,5 +10,6 @@ def main():
     except ValueError:
         print(sum)
 
+
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-def ingest() -> list[int]: 
+def ingest() -> list[int]:
     output = []
     digits = -1
     while True:
@@ -10,7 +10,8 @@ def ingest() -> list[int]:
         output.append(int(number, 2))
     return output, digits
 
-def main(input_array:list[int], digits:int):
+
+def main(input_array: list[int], digits: int):
     o2_list = input_array
     co2_list = input_array
     for i in reversed(range(digits)):
@@ -29,8 +30,7 @@ def main(input_array:list[int], digits:int):
         co2_list = ones if len(ones) < len(zeros) else zeros
     print(o2_list[0])
     print(co2_list[0])
-    
-        
+
 
 if __name__ == "__main__":
     input_values, digits = ingest()

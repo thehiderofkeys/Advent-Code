@@ -19,15 +19,10 @@ def main():
                 neighbours.append(grid[r][c + 1])
             if grid[r][c] < min(neighbours):
                 tally += grid[r][c] + 1
-                print("{},{}".format(r,c))
-
-
+                print("{},{}".format(r, c))
 
     print(tally)
 
-    
 
-    
-            
 if __name__ == "__main__":
     main()

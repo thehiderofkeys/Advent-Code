@@ -1,4 +1,4 @@
-def ingest() -> list[(str,int)]: 
+def ingest() -> list[(str, int)]:
     output = []
     try:
         while True:
@@ -9,7 +9,8 @@ def ingest() -> list[(str,int)]:
     except IndexError:
         return output
 
-def main(input_array:list[(str,int)]):
+
+def main(input_array: list[(str, int)]):
     depth = 0
     distance = 0
     aim = 0
@@ -24,6 +25,7 @@ def main(input_array:list[(str,int)]):
     print("depth: {}".format(depth))
     print("distance: {}".format(distance))
     print(depth * distance)
+
 
 if __name__ == "__main__":
     input_values = ingest()

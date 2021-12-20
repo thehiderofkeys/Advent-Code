@@ -1,4 +1,4 @@
-def ingest() -> list[list[int]]: 
+def ingest() -> list[list[int]]:
     output = []
     while True:
         line_str = input()
@@ -9,8 +9,10 @@ def ingest() -> list[list[int]]:
         output.append(line)
     return output
 
-def main(input_array:list[list[int]]):
-    vents = {'intersections':0}
+
+def main(input_array: list[list[int]]):
+    vents = {'intersections': 0}
+
     def check_coord(x, y):
         key = "{},{}".format(x, y)
         if key in vents:
@@ -29,6 +31,7 @@ def main(input_array:list[list[int]]):
             for x in range(min(line[0], line[2]), max(line[0], line[2]) + 1):
                 check_coord(x, y)
     print(vents['intersections'])
+
 
 if __name__ == "__main__":
     input_values = ingest()

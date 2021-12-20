@@ -1,9 +1,12 @@
 import statistics
-def ingest() -> list[int]: 
+
+
+def ingest() -> list[int]:
     output = [int(number) for number in input().split(',')]
     return output
 
-def main(crabs:list[int]):
+
+def main(crabs: list[int]):
     middle = int(statistics.median(crabs))
     fuel = sum([abs(pos - middle) for pos in crabs])
     print(middle)

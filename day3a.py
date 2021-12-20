@@ -1,4 +1,4 @@
-def ingest() -> list[int]: 
+def ingest() -> list[int]:
     output = []
     digits = -1
     while True:
@@ -10,7 +10,8 @@ def ingest() -> list[int]:
         output.append(int(number, 2))
     return output, digits
 
-def main(input_array:list[int], digits:int):
+
+def main(input_array: list[int], digits: int):
     gamma_str = ''
     epsilon_str = ''
     length = len(input_array)
@@ -23,8 +24,7 @@ def main(input_array:list[int], digits:int):
     epsilon = int(epsilon_str, 2)
     print(gamma)
     print(epsilon)
-    
-        
+
 
 if __name__ == "__main__":
     input_values, digits = ingest()
