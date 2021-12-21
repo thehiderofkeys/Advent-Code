@@ -15,6 +15,11 @@ def ingest() -> tuple[list, dict]:
 
 
 def main(template: list, rules: dict, tree: dict):
+    connect = dict()
+    for node in rules:
+        graph = dict()
+        iter_connect(node, tree, graph)
+        connect[node] = graph
     freq = Counter(template)
     for first, second in zip(template, template[1:]):
         iter_freq(first + second, rules, tree, freq)
@@ -23,6 +28,20 @@ def main(template: list, rules: dict, tree: dict):
     least_common = min(freq, key=freq.get)
     print("Most common {}, {}".format(most_common, freq[most_common]))
     print("Least common {}, {}".format(least_common, freq[least_common]))
+
+
+def iter_connect(node, tree, graph, depth=1):
+    left, right = node
+    if left in graph:
+        graph[left].append(depth)
+    else:
+        graph[left] = [depth]
+        iter_connect(left, tree, graph, depth + 1)
+    if right in graph:
+        graph[right].append(depth)
+    else:
+        graph[right] = [depth]
+        iter_connect(right, tree, graph, depth + 1)
 
 
 def iter_freq(node: str, rules: dict, tree: dict, freq: dict, depth: int = 10):
