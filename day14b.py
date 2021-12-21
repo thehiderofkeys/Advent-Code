@@ -15,45 +15,26 @@ def ingest() -> tuple[list, dict]:
 
 
 def main(template: list, rules: dict, tree: dict):
-    connect = dict()
-    for node in rules:
-        graph = dict()
-        iter_connect(node, tree, graph)
-        connect[node] = graph
+    pair_freq = dict()
     freq = Counter(template)
     for first, second in zip(template, template[1:]):
-        iter_freq(first + second, rules, tree, freq)
-    print(freq)
+        node = first + second
+        pair_freq[node] = 1 if node not in pair_freq else pair_freq[node] + 1
+
+    for _ in range(40):
+        next_freq = dict()
+        for node in pair_freq:
+            n = pair_freq[node]
+            char = rules[node]
+            freq[char] = n if char not in freq else freq[char] + n
+            left, right = tree[node]
+            next_freq[left] = n if left not in next_freq else next_freq[left] + n
+            next_freq[right] = n if right not in next_freq else next_freq[right] + n
+        pair_freq = next_freq
     most_common = max(freq, key=freq.get)
     least_common = min(freq, key=freq.get)
     print("Most common {}, {}".format(most_common, freq[most_common]))
     print("Least common {}, {}".format(least_common, freq[least_common]))
-
-
-def iter_connect(node, tree, graph, depth=1):
-    left, right = node
-    if left in graph:
-        graph[left].append(depth)
-    else:
-        graph[left] = [depth]
-        iter_connect(left, tree, graph, depth + 1)
-    if right in graph:
-        graph[right].append(depth)
-    else:
-        graph[right] = [depth]
-        iter_connect(right, tree, graph, depth + 1)
-
-
-def iter_freq(node: str, rules: dict, tree: dict, freq: dict, depth: int = 10):
-    new_char = rules[node]
-    if new_char not in freq:
-        freq[new_char] = 0
-    freq[new_char] += 1
-    depth -= 1
-    if depth > 0:
-        left, right = tree[node]
-        iter_freq(left, rules, tree, freq, depth)
-        iter_freq(right, rules, tree, freq, depth)
 
 
 if __name__ == "__main__":
