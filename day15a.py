@@ -25,19 +25,27 @@ def main(grid: list[list[int]]):
         if (r, c) == goal:
             print(d)
             return
-        visited[r][c] = 1
-        if r > 0 and visited[r - 1][c] == 0:
+        visited[r][c] = d
+        if r > 0:
             new_d = d + grid[r - 1][c]
-            heapq.heappush(heap, (new_d, r - 1, c))
-        if r < h - 1 and visited[r + 1][c] == 0:
+            if visited[r - 1][c] == 0 or visited[r - 1][c] > new_d:
+                visited[r - 1][c] = new_d
+                heapq.heappush(heap, (new_d, r - 1, c))
+        if r < h - 1:
             new_d = d + grid[r + 1][c]
-            heapq.heappush(heap, (new_d, r + 1, c))
-        if c > 0 and visited[r][c - 1] == 0:
+            if visited[r + 1][c] == 0 or visited[r + 1][c] > new_d:
+                visited[r + 1][c] = new_d
+                heapq.heappush(heap, (new_d, r + 1, c))
+        if c > 0:
             new_d = d + grid[r][c - 1]
-            heapq.heappush(heap, (new_d, r, c - 1))
-        if c < w - 1 and visited[r][c + 1] == 0:
+            if visited[r][c - 1] == 0 or visited[r][c - 1] > new_d:
+                visited[r][c - 1] = new_d
+                heapq.heappush(heap, (new_d, r, c - 1))
+        if c < w - 1:
             new_d = d + grid[r][c + 1]
-            heapq.heappush(heap, (new_d, r, c + 1))
+            if visited[r][c + 1] == 0 or visited[r][c + 1] > new_d:
+                visited[r][c + 1] = new_d
+                heapq.heappush(heap, (new_d, r, c + 1))
 
 
 if __name__ == "__main__":
