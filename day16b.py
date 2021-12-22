@@ -19,7 +19,7 @@ def get_n(bits_list: list[int], n: int) -> str:
 def packet(bits_list: list[int]) -> int:
     version = int(get_n(bits_list, 3), 2)
     type_id = int(get_n(bits_list, 3), 2)
-    print("Version: {}, Type: {}".format(version, type_id), end="")
+    #print("Version: {}, Type: {}".format(version, type_id), end="")
 
     if type_id == 4:
         value = ""
@@ -29,20 +29,20 @@ def packet(bits_list: list[int]) -> int:
             if not cont:
                 break
         value = int(value, 2)
-        print(", Value: {}".format(value))
+        #print(", Value: {}".format(value))
         return value
     len_type = bits_list.pop(0)
     results = []
     if len_type == 0:
         length = int(get_n(bits_list, 15), 2)
-        print(", Length Type: {}, Length {}".format(len_type, length))
+        #print(", Length Type: {}, Length {}".format(len_type, length))
         sublist = bits_list[:length]
         del bits_list[:length]
         while len(sublist) > 0:
             results.append(packet(sublist))
     if len_type == 1:
         length = int(get_n(bits_list, 11), 2)
-        print(", Length Type: {}, Length {}".format(len_type, length))
+        #print(", Length Type: {}, Length {}".format(len_type, length))
         for _ in range(length):
             results.append(packet(bits_list))
     if type_id == 0:
